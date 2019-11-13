@@ -10,7 +10,7 @@ def save_song(song_link):
     songResponse = requests.get(song_link)
     songSoup = BeautifulSoup(songResponse.text, 'html.parser')
     songTitle = songSoup.find("div", {"class": "ringtone"}).find_next('b').contents[0]
-    print(songTitle.text)
+    print(songTitle)
 
 
 artistHTML = 'https://www.azlyrics.com/r/riffraff.html'
@@ -36,5 +36,5 @@ save_song('https://www.azlyrics.com/lyrics/riffraff/dontwait.html')
 for song in albums.find_all('a', href=True):
     song_link = song['href']
     # Fix the url
-    song_link = 'http://www.azlyrics.com/lyrics' + song_link.split('lyrics')[-1]
+    song_link = 'https://www.azlyrics.com/lyrics' + song_link.split('lyrics')[-1]
     save_song(song_link)
